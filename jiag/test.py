@@ -33,6 +33,7 @@ def group_to_id(groups):
             print(e)
     return ans
 
+noreadme = []
 
 def getAllSubGroup(name2id):
     """
@@ -41,7 +42,6 @@ def getAllSubGroup(name2id):
             [name1, name2, name3] elements represent the projects which do not have readme 
     """
     ans = {} # store subgroup
-    noreadme = []
     for name, id in name2id.items():
         subgroup_url = "https://gitlab.com/api/v4/groups/" + str(id) + "/subgroups?public_token=gJ58pqci-xkdA2uJhcis"
         print("finding " + name + " subgroup")
@@ -69,11 +69,11 @@ def getAllSubGroup(name2id):
                 if not ans[name]["project"]["has_readme"]:
                     noreadme.append(pro['name'])
 
-    return ans, noreadme
+    return ans
 
 
 
 #name2id = group_to_id(["klqgroup"])
 #print(name2id)
 sub = getAllSubGroup({'klqgroup':'10420289'})
-print(sub)
+print(sub, noreadme)
